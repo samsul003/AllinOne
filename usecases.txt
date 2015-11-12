@@ -1,0 +1,19 @@
+A. User finds the home page where he can choose one out of multiple options
+
+    1. main_app ( Cost Management)
+    2. Bunch of options, today's expense, yesterdays, last week's, last month, this year.
+    3. Add items to today's list
+    4. When saved should be redirected to the same page with all previous data( from same day)
+    5. Categories:
+                    1. Groceries
+                    2. Body care
+                        a. Need
+                        b. Additional
+                    3. Health
+                    4. Food
+                    5. Travel
+                    6. Fun (movie, dinner, date, drinks)
+                    7. Sports (Gym, sports gear)
+                    8.
+
+    6. User must be able to add custom categories later.

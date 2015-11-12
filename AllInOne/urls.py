@@ -19,5 +19,7 @@ from main_app import views as main_app_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', main_app_views.IndexView.as_view(), name='home')
+    url(r'^$', main_app_views.IndexView.as_view(), name='home'),
+    url(r'add/item/', main_app_views.AddItemView.as_view(), name='add_item'),
+    url(r'add/category/', main_app_views.AddCategory.as_view(), name='add_category')
 ]
