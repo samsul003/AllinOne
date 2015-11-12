@@ -5,8 +5,12 @@ from django.db import models
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100, primary_key=True)
-    description = models.CharField(max_length='255', help_text=' A brief description about what'
-                                                               ' kind of items fall into this category', blank=True)
+    description = models.CharField(max_length='255', help_text=' A brief description about what')
+
+    def __str__(self):
+        return self.category_name
+    def __unicode__(self):
+        return self.category_name
 
 
 class Item(models.Model):
@@ -21,3 +25,8 @@ class Item(models.Model):
     )
     currency = models.CharField(max_length=50, choices=CURRENCY_CHOICES, default='EURO')
     category = models.ForeignKey(Category)
+
+    def __str__(self):
+        return self.name
+    def __unicode__(self):
+        return self.name
