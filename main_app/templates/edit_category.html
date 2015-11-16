@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
     <title>Title</title>
 </head>
 <body>
@@ -13,7 +17,10 @@
 
 {% for category in categories %}
     <p>{{ category.category_name }} &nbsp; &nbsp;&nbsp;&nbsp;
-         <button><a href="{% url 'cat_delete' category=category.category_name %}" >Delete</a></button>
+         <form class="delete-form" method="post" action="{% url 'cat_delete' %}">{% csrf_token %}
+            <input type="hidden" name="category" value="{{ category.category_name }}">
+            <input type="submit"  value="Delete" >
+         </form>
     </p>
 {% endfor %}
 </body>

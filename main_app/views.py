@@ -1,4 +1,7 @@
+import json
+
 from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponse
 from django.utils import timezone
 from django.forms import forms
 from django.shortcuts import render
@@ -55,7 +58,37 @@ class CategoryDeleteView(FormView):
     success_url = reverse_lazy('add_category')
 
     def get(self, request, *args, **kwargs):
-        print self.request.GET['category']
+        category = self.kwargs['category']
+        category_obj = Category.objects.get(category_name=category)
+        return super(CategoryDeleteView, self).get(self, request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        result = super(CategoryDeleteView, self).get_context_data(**kwargs)
+        categories = Category.objects.all()
+        result.update({'categories':categories})
+        return result
+    def form_valid(self, form):
+        super(CategoryDeleteView, self).form_valid(form)
+        form = self.get_form()
+
+def delete_category(request):
+    if request.method== 'POST':
+        category = request.POST['category']
+        response_data = {}
+        category_obj = Category.objects.get(category_name=category)
+        try:
+            category_obj.delete()
+            response_data['result']= "Deleted "
+
+        except:
+            response_data['result']="Not Found"
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+
+        )
+
+
 
 
 
