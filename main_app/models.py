@@ -5,7 +5,7 @@ from django.db import models
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100, primary_key=True)
-    description = models.CharField(max_length='255', help_text=' A brief description about what')
+    description = models.CharField(max_length='255', help_text=' A brief description about what', blank=True)
 
     def __str__(self):
         return self.category_name

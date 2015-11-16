@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+                <form action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Add" />
+                </form>
+
+{% for category in categories %}
+    <p>{{ category.category_name }} &nbsp; &nbsp;&nbsp;&nbsp;
+         <button><a href="{% url 'cat_delete' category=category.category_name %}" >Delete</a></button>
+    </p>
+{% endfor %}
+</body>
+</html>
