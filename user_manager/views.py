@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
-from django.views.generic import FormView
+from django.views.generic import FormView, CreateView
+
 from user_manager.forms import LoginForm, UserRegistrationFrom
 
 
@@ -9,7 +10,7 @@ class LoginView(FormView):
     template_name = 'login.html'
     success_url = reverse_lazy('home')
 
-class UserRegistrationView(FormView):
+class UserRegistrationView(CreateView):
     form_class = UserRegistrationFrom
     template_name = 'registration.html'
     success_url = reverse_lazy('home')
