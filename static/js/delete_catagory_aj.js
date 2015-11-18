@@ -8,7 +8,8 @@
                 type: $(this).attr('method'), // GET or POST
                 url: $(this).attr('action'), // the file to call
                 success: function(response) {
-                    $('#ff').html("Sajid")
+                    $(this).hide();
+                    alert("Hello");
                 }
             });
             return false;

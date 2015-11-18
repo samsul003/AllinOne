@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load staticfiles %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="{% static "js/delete_catagory_aj.js" %}"></script>
 
 
     <title>Title</title>
 </head>
 <body>
+            <div id="cat_form">
 
                 <form action="" method="post">{% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Add" />
                 </form>
-
+            </div>
 {% for category in categories %}
     <p>{{ category.category_name }} &nbsp; &nbsp;&nbsp;&nbsp;
          <form class="delete-form" method="post" action="{% url 'cat_delete' %}">{% csrf_token %}
@@ -22,6 +25,7 @@
             <input type="submit"  value="Delete" >
          </form>
     </p>
+    <div id="ff"></div>
 {% endfor %}
 </body>
 </html>
