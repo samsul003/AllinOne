@@ -11,9 +11,13 @@ class AllUser(AbstractBaseUser):
     email_verified = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now=True)
 
+
     def __unicode__(self):
 
         return self.email
+
+
+
 
 
 

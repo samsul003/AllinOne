@@ -22,11 +22,7 @@ class IndexView(TemplateView):
         result.update({'time':timezone.now().time()})
         return result
 
-    def get(self, request, *args, **kwargs):
-        email = EmailMessage('Subject', 'Body', EMAIL_HOST_USER, ['sajidur89@gmail.com', 'sajidur.rahman@particulate.me'])
-        email.send()
-        print 'I ran'
-        return super(IndexView, self).get(self, request, *args, **kwargs)
+  
 
 
 class AddItemView(CreateView):
