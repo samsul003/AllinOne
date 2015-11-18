@@ -22,7 +22,7 @@ class IndexView(TemplateView):
         result.update({'time':timezone.now().time()})
         return result
 
-  
+
 
 
 class AddItemView(CreateView):

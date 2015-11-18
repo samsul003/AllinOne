@@ -34,6 +34,8 @@ class UserRegistrationView(CreateView):
         email.send()
         return super(UserRegistrationView, self).form_valid(form)
 
+class EmailVeriFicationView
+
 
 
 

@@ -26,6 +26,6 @@ urlpatterns = [
 
     # url(r'add/category/', main_app_views.AddCategoryView.as_view(), name='add_category'),
     url(r'^today/', main_app_views.TimeLineView.as_view(), name='time_line'),
-    url(r'^users/', include('user_manager.urls')),
+    url(r'^user/', include('user_manager.urls')),
 
 ]
