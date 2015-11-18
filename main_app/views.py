@@ -1,4 +1,5 @@
 import json
+from django.core.mail import EmailMessage
 
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
@@ -19,6 +20,13 @@ class IndexView(TemplateView):
         result = super(IndexView, self).get_context_data(**kwargs)
         result.update({'time':timezone.now().time()})
         return result
+
+    def get(self, request, *args, **kwargs):
+        email = EmailMessage('Subject', 'Body', ['sajidur89@gmail.com', 'sajidur.rahman@particulate.me'])
+        email.send()
+        print 'I ran'
+        return super(IndexView, self).get(self, request, *args, **kwargs)
+
 
 class AddItemView(CreateView):
     form_class = AddItemForm
