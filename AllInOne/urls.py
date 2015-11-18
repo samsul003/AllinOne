@@ -20,11 +20,12 @@ from main_app import views as main_app_views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', main_app_views.IndexView.as_view(), name='home'),
-    url(r'add/item/', main_app_views.AddItemView.as_view(), name='add_item'),
-    url(r'add/category/', main_app_views.AddCategoryView.as_view(), name='add_category'),
-    url(r'delete/category/$', main_app_views.delete_category, name='cat_delete'),
+    url(r'^add/item/', main_app_views.AddItemView.as_view(), name='add_item'),
+    url(r'^add/category/', main_app_views.AddCategoryView.as_view(), name='add_category'),
+    url(r'^delete/category/$', main_app_views.delete_category, name='cat_delete'),
 
     # url(r'add/category/', main_app_views.AddCategoryView.as_view(), name='add_category'),
-    url(r'today/', main_app_views.TimeLineView.as_view(), name='time_line'),
+    url(r'^today/', main_app_views.TimeLineView.as_view(), name='time_line'),
+    url(r'^users/', include('user_manager.urls')),
 
 ]
