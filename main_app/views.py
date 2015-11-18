@@ -9,6 +9,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView, ListView, CreateView, FormView, DeleteView
+from AllInOne.settings import EMAIL_HOST_USER
 from main_app.forms import AddItemForm, AddCategoryForm
 from main_app.models import Category
 
@@ -22,7 +23,7 @@ class IndexView(TemplateView):
         return result
 
     def get(self, request, *args, **kwargs):
-        email = EmailMessage('Subject', 'Body', ['sajidur89@gmail.com', 'sajidur.rahman@particulate.me'])
+        email = EmailMessage('Subject', 'Body', EMAIL_HOST_USER, ['sajidur89@gmail.com', 'sajidur.rahman@particulate.me'])
         email.send()
         print 'I ran'
         return super(IndexView, self).get(self, request, *args, **kwargs)
