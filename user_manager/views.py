@@ -1,7 +1,7 @@
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render
-from django.views.generic import FormView, CreateView
+from django.views.generic import FormView, CreateView, TemplateView, RedirectView, View
 from AllInOne.settings import EMAIL_HOST_USER
 from email_app.models import VerificationCode
 import uuid
@@ -34,14 +34,8 @@ class UserRegistrationView(CreateView):
         email.send()
         return super(UserRegistrationView, self).form_valid(form)
 
-class EmailVeriFicationView
-
-
-
-
-
-
-
-
-
-
+class EmailVeriFicationView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if(request.method=="GET"):
+            print kwargs['token']
+        return super(EmailVeriFicationView, self).dispatch(request, *args, **kwargs)
