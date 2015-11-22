@@ -10,7 +10,7 @@ class AllUser(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     email_verified = models.BooleanField(default=False)
     date_joined = models.DateField(auto_now=True)
-
+    USERNAME_FIELD = 'email'
 
     def __unicode__(self):
 
