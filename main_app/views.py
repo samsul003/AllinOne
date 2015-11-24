@@ -1,6 +1,6 @@
 import json
 from django.core.mail import EmailMessage
-
+from braces.views import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
 from django.utils import timezone
@@ -94,6 +94,13 @@ def delete_category(request):
         )
 
 
+class Categories(LoginRequiredMixin, TemplateView):
+
+    template_name = "categories.html"
+    redirect_field_name = "next"
+
+    # fields for LoginRequiredMixin
+    login_url = reverse_lazy('login')
 
 
 

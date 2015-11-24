@@ -1,14 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.views.generic import FormView, CreateView, TemplateView, RedirectView, View
 from AllInOne.settings import EMAIL_HOST_USER
 from email_app.models import VerificationCode
 import uuid
+
+from main_app.custom_context_processor import next_param
 from user_manager.forms import LoginForm, UserRegistrationFrom
 from user_manager.models import AllUser
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 
 
 
@@ -57,15 +60,37 @@ class LoginView(FormView):
     def form_valid(self, form):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password']
+        referrer = self.request.POST.get('referrer')
         user = authenticate(email=email, password=password)
 
         if user is not None:
             # if user.is_active:
             login(self.request, user)
+            if referrer !="":
+                self.success_url = referrer
             return super(LoginView, self).form_valid(form)
         else:
 
             return render(self.request, "login.html", {'form': form, 'login_error_message': "Invalid username and password."})
 
+    def get_context_data(self, **kwargs):
+        result = super(LoginView, self).get_context_data( **kwargs)
+        param = self.request.GET.get('next', '')
+        print param
+        result.update({'param': param})
+        return result
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return HttpResponseRedirect(reverse_lazy('home'))
+        return super(LoginView, self).dispatch(request, *args, **kwargs)
+
+
+@login_required(login_url=reverse_lazy('login'))
+def logout_view(request):
+    if request.method == "GET":
+        logout(request)
+        return HttpResponseRedirect(reverse_lazy('login'))
+    else:
+        return HttpResponse(" Crap !")
 

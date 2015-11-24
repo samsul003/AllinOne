@@ -8,8 +8,11 @@
 {{ login_error_message }}
 <form action="{% url 'login' %}" method="post">{% csrf_token %}
     {{ form.as_p }}
+    <input name="referrer" type="hidden" value="{{ param }}">
     <input type="submit" value="Login">
 
 </form>
+
+
 </body>
 </html>
