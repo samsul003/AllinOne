@@ -56,6 +56,7 @@ class LoginView(FormView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
+        self.success_url = reverse_lazy('home')
         email = form.cleaned_data['email']
         password = form.cleaned_data['password']
         referrer = self.request.POST.get('referrer')
@@ -74,11 +75,15 @@ class LoginView(FormView):
     def get_context_data(self, **kwargs):
         result = super(LoginView, self).get_context_data( **kwargs)
         param = self.request.GET.get('next', '')
+        result.update({'param': param})
         return result
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated():
             self.success_url = reverse_lazy('home')
+            return HttpResponseRedirect(reverse_lazy('home'))
+        else:
+            return super(LoginView, self).dispatch(request, *args, **kwargs)
 
 
 
