@@ -74,13 +74,12 @@ class LoginView(FormView):
     def get_context_data(self, **kwargs):
         result = super(LoginView, self).get_context_data( **kwargs)
         param = self.request.GET.get('next', '')
-        result.update({'param': param})
         return result
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated():
-            return HttpResponseRedirect(reverse_lazy('home'))
-        return super(LoginView, self).dispatch(request, *args, **kwargs)
+            self.success_url = reverse_lazy('home')
+
 
 
 @login_required(login_url=reverse_lazy('login'))
