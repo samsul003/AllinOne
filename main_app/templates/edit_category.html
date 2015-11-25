@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% load staticfiles %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+{% extends '_base.html' %}
+{% load staticfiles %}
+{% block content %}
     <script src="{% static "js/delete_catagory_aj.js" %}"></script>
-
-
-    <title>Title</title>
-</head>
-<body>
-            <div id="cat_form">
+    <div id="cat_form">
 
                 <form action="" method="post">{% csrf_token %}
                 {{ form.as_p }}
@@ -27,5 +18,5 @@
     </p>
     <div id="ff"></div>
 {% endfor %}
-</body>
-</html>
+
+{% endblock %}

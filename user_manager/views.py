@@ -26,8 +26,6 @@ class UserRegistrationView(CreateView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-
-
         recipient = form.cleaned_data['email']
         unique_code = uuid.uuid4().get_hex()
         token_obj = VerificationCode(token=unique_code, email=recipient)
@@ -76,7 +74,6 @@ class LoginView(FormView):
     def get_context_data(self, **kwargs):
         result = super(LoginView, self).get_context_data( **kwargs)
         param = self.request.GET.get('next', '')
-        print param
         result.update({'param': param})
         return result
 
