@@ -103,5 +103,5 @@ class Categories(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy('login')
 
 
-
-
+class CustomErrorView(TemplateView):
+    template_name = "error.html"

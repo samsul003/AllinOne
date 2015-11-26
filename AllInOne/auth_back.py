@@ -7,7 +7,6 @@ class MyCustomBackend(object):
     def authenticate(self, email=None, password=None):
          try:
              o = AllUser.objects.get(email=email, password=password)
-
          except AllUser.DoesNotExist:
 
                  return None

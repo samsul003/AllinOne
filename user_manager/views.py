@@ -14,16 +14,10 @@ from user_manager.models import AllUser
 from django.contrib.auth import login, authenticate, logout
 
 
-
-class LoginView(FormView):
-    form_class = LoginForm
-    template_name = 'login.html'
-    success_url = reverse_lazy('home')
-
 class UserRegistrationView(CreateView):
     form_class = UserRegistrationFrom
     template_name = 'registration.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('error')
 
     def form_valid(self, form):
         recipient = form.cleaned_data['email']
@@ -36,6 +30,14 @@ class UserRegistrationView(CreateView):
         email = EmailMessage('Subject', message, EMAIL_HOST_USER, [recipient, 'sajidur.rahman@particulate.me'])
         email.send()
         return super(UserRegistrationView, self).form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return render(request, 'error.html', {'error': 'You are already a registered user'})
+        else:
+            return super(UserRegistrationView, self).get(request, *args, **kwargs)
+
+
 
 
 class EmailVeriFicationView(View):
@@ -79,12 +81,13 @@ class LoginView(FormView):
         return result
 
     def dispatch(self, request, *args, **kwargs):
+        self.success_url = reverse_lazy('home')
+
         if request.user.is_authenticated():
             self.success_url = reverse_lazy('home')
             return HttpResponseRedirect(reverse_lazy('home'))
         else:
             return super(LoginView, self).dispatch(request, *args, **kwargs)
-
 
 
 @login_required(login_url=reverse_lazy('login'))
@@ -94,4 +97,6 @@ def logout_view(request):
         return HttpResponseRedirect(reverse_lazy('login'))
     else:
         return HttpResponse(" Crap !")
+
+
 

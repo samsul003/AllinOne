@@ -1,0 +1,10 @@
+{% extends '_base.html' %}
+{% block content%}
+    {% load check_tags %}
+
+    {{ error }}
+
+    {% if request.path|is_request_from_register_view %} Email Sent {% endif %}
+
+
+{% endblock %}

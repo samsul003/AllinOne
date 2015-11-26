@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^today/', main_app_views.TimeLineView.as_view(), name='time_line'),
     url(r'^categories/', main_app_views.Categories.as_view(), name='categories'),
     url(r'^user/', include('user_manager.urls')),
+    url(r'^error/', main_app_views.CustomErrorView.as_view(), name='error'),
 
 ]
