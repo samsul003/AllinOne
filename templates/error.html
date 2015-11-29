@@ -1,10 +1,9 @@
 {% extends '_base.html' %}
 {% block content%}
-    {% load check_tags %}
 
     {{ error }}
-
-    {% if request.path|is_request_from_register_view %} Email Sent {% endif %}
+    <h1>hi</h1>
+{#    {% block request_path = request.path %}{% endblock %}#}
 
 
 {% endblock %}

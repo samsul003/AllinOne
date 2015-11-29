@@ -25,7 +25,8 @@ class UserRegistrationView(CreateView):
         token_obj = VerificationCode(token=unique_code, email=recipient)
         token_obj.save()
         message = "Please click the link http://127.0.0.1:8000/user/verify/{0}/".format(unique_code)
-        print message
+        result = self.get_context_data()
+        result.update({'error': "Email Sent"})
 
         email = EmailMessage('Subject', message, EMAIL_HOST_USER, [recipient, 'sajidur.rahman@particulate.me'])
         email.send()
@@ -36,6 +37,13 @@ class UserRegistrationView(CreateView):
             return render(request, 'error.html', {'error': 'You are already a registered user'})
         else:
             return super(UserRegistrationView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        result = super(UserRegistrationView, self).get_context_data(**kwargs)
+        result.update({'error': "Email Sent"})
+        return result
+    def post(self, request, *args, **kwargs):
+        super(UserRegistrationView, self).post(request, *args, **kwargs)
 
 
 
