@@ -8,15 +8,24 @@
 
 
 }
+/*.form-horizontal{*/
+    /*background-color: red;*/
+    /*margin: auto;*/
+/*}*/
 
 .menu_tile{
     background-color: #777777;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.forms{
-        background-color: #777777;
-        padding-left: 10px;
-        padding-right: 10px;
+.form_custom{
+    /*margin-left: 30%;*/
+    /*margin-right: 30%;*/
+
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+
 
 }
+

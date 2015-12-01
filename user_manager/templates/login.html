@@ -1,16 +1,41 @@
-
 {% extends '_base.html' %}
+
 {% block content %}
-{{ login_error_message }}
-<form action="{% url 'login' %}" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input name="referrer" type="hidden" value="{{ param }}">
-    <input type="submit" value="Login">
+     {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/main.css" %}"/>
+    <div class="container-fluid">
 
-</form>
+        {% load crispy_forms_tags %}
+        <div class="container">
+            {% if login_error_message %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="alert alert-danger">{{ login_error_message }}</div>
+                    </div>
 
-{#    {% load crispy_forms_tags %}#}
-{#    {% crispy form form.helper  %}#}
+                </div>
+            {% endif %}
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+
+                <div class="col-md-6 ">
+                    <form class="form_custom" action="{% url 'login' %}" method="post">{% csrf_token %}
+                        {{ form|crispy }}
 
 
+                        <input name="referrer" type="hidden" value="{{ param }}">
+                        <input type="submit" value="Login">
+
+                    </form>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+        {#    {% load crispy_forms_tags %}#}
+        {#    {% crispy form form.helper  %}#}
+
+    </div>
 {% endblock %}

@@ -42,8 +42,17 @@ class UserRegistrationView(CreateView):
         result = super(UserRegistrationView, self).get_context_data(**kwargs)
         result.update({'error': "Email Sent"})
         return result
-    def post(self, request, *args, **kwargs):
-        super(UserRegistrationView, self).post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        path = reverse_lazy('error')
+        url = "{0}{1}".format(path, "?param=email_sent")
+
+        return url
+
+
+
+
+
 
 
 

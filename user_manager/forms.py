@@ -2,7 +2,8 @@ from django import forms
 from django.forms import ModelForm
 from user_manager.models import AllUser
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Field, HTML
+
 
 
 class UserRegistrationFrom(ModelForm):
@@ -22,6 +23,12 @@ class UserRegistrationFrom(ModelForm):
 
 
 class LoginForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_id = 'id-login_form'
+        self.helper.form_class = 'form-inline'
     email = forms.EmailField(max_length=100)
     password = forms.CharField(max_length=100)
 

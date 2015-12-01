@@ -1,8 +1,16 @@
 {% extends '_base.html' %}
 {% block content%}
 
-    {{ error }}
-    <h1>hi</h1>
+
+   <div class="container">
+            {% if error %}
+                <div class="row">
+                    <div class="col-xs-12"
+                         style="text-align: center; border: 1px solid #cccccc; border-radius: 10px; padding: 25px">{{ error }}</div>
+
+                </div>
+            {% endif %}
+        </div>
 {#    {% block request_path = request.path %}{% endblock %}#}
 
 

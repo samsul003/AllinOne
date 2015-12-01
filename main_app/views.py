@@ -103,5 +103,15 @@ class Categories(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy('login')
 
 
+
 class CustomErrorView(TemplateView):
     template_name = "error.html"
+
+    def get_context_data(self, **kwargs):
+        param = self.request.GET.get("param", '')
+        if param != '' and param == 'email_sent':
+            error = " An e-mail has been sent to account. Please click on the link to verify your " \
+                    "email account. No activity is possible until you verify."
+            return {'error': error}
+        else:
+            return super(CustomErrorView, self).get_context_data(**kwargs)

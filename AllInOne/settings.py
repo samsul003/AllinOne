@@ -121,3 +121,4 @@ EMAIL_PORT = 587
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
