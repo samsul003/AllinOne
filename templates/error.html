@@ -1,17 +1,22 @@
 {% extends '_base.html' %}
-{% block content%}
+{% block content %}
+{% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/main.css" %}"/>
 
-
-   <div class="container">
-            {% if error %}
-                <div class="row">
-                    <div class="col-xs-12"
-                         style="text-align: center; border: 1px solid #cccccc; border-radius: 10px; padding: 25px">{{ error }}</div>
-
+    <div class="container">
+        {% if error %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div style="padding: 25px; font-family: 'AUdimat-Bold'; font-size: 20px">Hi How are you </div>
+                    <div class="alert-success" style="padding: 25px; font-family: 'AUdimat-Italic'; font-size: 20px">
+                        {{ error }}
+                    </div>
                 </div>
-            {% endif %}
-        </div>
-{#    {% block request_path = request.path %}{% endblock %}#}
+
+            </div>
+        {% endif %}
+    </div>
+    {#    {% block request_path = request.path %}{% endblock %}#}
 
 
 {% endblock %}

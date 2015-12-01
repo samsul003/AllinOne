@@ -42,12 +42,44 @@
 }
 
 @font-face {
+  font-family: 'AUdimat-Bold';
+  src: url('../fonts/AUdimat-Bold.otf');
+  src: local('../fonts/OpenSansRegular.ttf')
+}
+
+
+@font-face {
+  font-family: 'AUdimat-Italic';
+  src: url('../fonts/AUdimat-Italic.otf');
+  src: local('../fonts/OpenSansRegular.ttf')
+}
+
+@font-face {
   font-family: 'Fontin-Bold';
   src: url('../fonts/Fontin-Bold.otf');
 
 }
 
-body {
-        font-family: 'Otama-ep', serif;
-        font-size: 20px;
-      }
+@font-face {
+  font-family: 'GoodDog';
+  src: url('../fonts/GoodDog.otf');
+
+}
+
+@font-face {
+  font-family: 'Aller_Bd';
+  src: url('../fonts/Aller_Bd.ttf');
+
+}
+
+@font-face {
+  font-family: 'Aller_It';
+  src: url('../fonts/Aller_It.ttf');
+
+}
+
+@font-face {
+  font-family: 'AllerDisplay';
+  src: url('../fonts/AllerDisplay.ttf');
+
+}
