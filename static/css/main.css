@@ -83,3 +83,13 @@
   src: url('../fonts/AllerDisplay.ttf');
 
 }
+
+body .nav{
+    font-family: Aller_Bd;
+    font-size: 15px;
+}
+body{
+        font-family: Fontin-Bold;
+        font-size: 15px;
+
+}

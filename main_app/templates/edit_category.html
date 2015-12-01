@@ -1,22 +1,45 @@
 {% extends '_base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 {% block content %}
     <script src="{% static "js/delete_catagory_aj.js" %}"></script>
-    <div id="cat_form">
-
+    <link rel="stylesheet" href="{% static "css/main.css" %}"/>
+    <div class="container-fluid">
+        <div id="cat_form" class="row">
+            <div class="col-md-5">
                 <form action="" method="post">{% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Add" />
+                    {{ form|crispy }}
+                    <input class="btn btn-default" type="submit" value="Add"/>
                 </form>
             </div>
-{% for category in categories %}
-    <p>{{ category.category_name }} &nbsp; &nbsp;&nbsp;&nbsp;
-         <form class="delete-form" method="post" action="{% url 'cat_delete' %}">{% csrf_token %}
-            <input type="hidden" name="category" value="{{ category.category_name }}">
-            <input type="submit"  value="Delete" >
-         </form>
-    </p>
-    <div id="ff"></div>
-{% endfor %}
+            <div class="col-md-6"  style="margin-left: 30px">
+                <h2>Edit the currently available categories</h2>
+                <br>
+                {% for category in categories %}
+                    <div class="row" style="margin-bottom: 10px">
+                        <div class="col-md-4">{{ category.category_name }} </div>
+                        <div class="col-md-3">
+                            <form class="delete-form" method="post" action="{% url 'cat_delete' %}">{% csrf_token %}
+                                <input type="hidden" name="category" value="{{ category.category_name }}">
+                                <input class="btn btn-danger" type="submit" value="Delete">
+                            </form>
+
+                        </div>
+
+                        <div class="col-md-3">
+                            <form class="delete-form" method="post" action="{% url 'cat_delete' %}">{% csrf_token %}
+                                <input type="hidden" name="category" value="{{ category.category_name }}">
+                                <input class="btn btn-default" type="submit" value="Rename">
+                            </form>
+
+                        </div>
+                        <div id="ff"></div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
