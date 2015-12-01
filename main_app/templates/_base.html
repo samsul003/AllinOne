@@ -2,32 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" >
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
 </head>
 <body>
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                {% if user.is_superuser %}
+                    <li class="active"><a href="{% url 'admin' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'categories' %}">Apps</a></li>
+                <li><a href="{% url 'add_category' %}">Edit Category</a></li>
+                <li><a href="{% url 'time_line' %}">Time Line</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">login</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-    <div>
-      <ul class="nav navbar-nav">
-        {% if user.is_superuser %}
-            <li class="active"><a href="{% url 'admin' %}">Admin</a></li>
-        {% endif %}
-        <li><a href="{% url 'categories' %}">Apps</a></li>
-        <li><a href="{% url 'add_category' %}">Edit Category</a></li>
-        <li><a href="{% url 'time_line' %}">Time Line</a></li>
-      {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">logout</a></li>
-      {% else %}
-        <li><a href="{% url 'login' %}">login</a></li>
-      {% endif %}
-      </ul>
-    </div>
-  </div>
 </nav>
 {% block content %}{% endblock content %}
 </body>

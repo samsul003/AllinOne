@@ -29,3 +29,25 @@
 
 }
 
+/*@font-face {*/
+  /*font-family: 'OpenSansRegular';*/
+  /*src: url('../fonts/OpenSansRegular.ttf');*/
+  /*src: local('../fonts/OpenSansRegular.ttf')*/
+/*}*/
+
+@font-face {
+  font-family: 'Otama-ep';
+  src: url('../fonts/Otama-ep.otf');
+  src: local('../fonts/OpenSansRegular.ttf')
+}
+
+@font-face {
+  font-family: 'Fontin-Bold';
+  src: url('../fonts/Fontin-Bold.otf');
+
+}
+
+body {
+        font-family: 'Otama-ep', serif;
+        font-size: 20px;
+      }
