@@ -57,17 +57,6 @@ class UserRegistrationView(CreateView):
 
 
 
-class EmailVeriFicationView(View):
-    def dispatch(self, request, *args, **kwargs):
-        message = ""
-        if(request.method=="GET"):
-            token = kwargs['token']
-            ver_code_obj = VerificationCode.objects.get(token=token)
-            user = AllUser.objects.get(email=ver_code_obj.email)
-            if user.email_verified:
-                message = " You are already verified user."
-        return super(EmailVeriFicationView, self).dispatch(request, *args, **kwargs)
-
 
 class LoginView(FormView):
     form_class = LoginForm

@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
-from user_manager.views import LoginView, UserRegistrationView, EmailVeriFicationView, logout_view
+from email_app.views import EmailVeriFicationView
+from user_manager.views import LoginView, UserRegistrationView, logout_view
 
 urlpatterns = [
 
