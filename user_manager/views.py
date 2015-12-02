@@ -50,21 +50,12 @@ class UserRegistrationView(CreateView):
         return url
 
 
-
-
-
-
-
-
-
-
 class LoginView(FormView):
     form_class = LoginForm
     template_name = "login.html"
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('dash_board')
 
     def form_valid(self, form):
-        self.success_url = reverse_lazy('home')
         email = form.cleaned_data['email']
         password = form.cleaned_data['password']
         referrer = self.request.POST.get('referrer')
@@ -87,10 +78,10 @@ class LoginView(FormView):
         return result
 
     def dispatch(self, request, *args, **kwargs):
-        self.success_url = reverse_lazy('home')
+        self.success_url = reverse_lazy('dash_board')
 
         if request.user.is_authenticated():
-            self.success_url = reverse_lazy('home')
+            self.success_url = reverse_lazy('dash_board')
             return HttpResponseRedirect(reverse_lazy('home'))
         else:
             return super(LoginView, self).dispatch(request, *args, **kwargs)
@@ -105,4 +96,6 @@ def logout_view(request):
         return HttpResponse(" Crap !")
 
 
-
+#@login_required(login_url=reverse_lazy('login'))
+class DashBoardView(TemplateView):
+    template_name = 'dash_board.html'

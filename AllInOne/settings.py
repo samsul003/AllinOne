@@ -93,7 +93,7 @@ DATABASES = {
     }
 }
 
-AUTHENTICATION_BACKENDS = ('AllInOne.auth_back.MyCustomBackend', )
+AUTHENTICATION_BACKENDS = ('AllInOne.auth_back.MyCustomBackend', 'django.contrib.auth.backends.ModelBackend',)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
