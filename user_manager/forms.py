@@ -1,9 +1,9 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 from django import forms
 from django.forms import ModelForm
-from user_manager.models import AllUser
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Field, HTML
 
+from user_manager.models import AllUser
 
 
 class UserRegistrationFrom(ModelForm):

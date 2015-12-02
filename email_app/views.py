@@ -1,8 +1,8 @@
-from django.shortcuts import render
-
 # Create your views here.
+from django.shortcuts import render
 from django.views.generic import View
 from email_app.models import VerificationCode
+from user_manager.forms import LoginForm
 from user_manager.models import AllUser
 
 
@@ -20,7 +20,7 @@ class EmailVeriFicationView(View):
 
         """
         message = ""
-        if(request.method=="GET"):
+        if request.method=="GET":
             token = kwargs['token']
             try:
                 ver_code_obj = VerificationCode.objects.get(token=token)
@@ -33,17 +33,12 @@ class EmailVeriFicationView(View):
                     user.email_verified = True
                     user.save()
                     message = " You have successfully verified your email"
-
-
-
-
-
             except:
                 message = " Exception occured. Something went wrong ! " \
                           "Click Request button to get new verification email."
 
 
-        return render(request,)
+        return render(request,'error.html', {'error':message, 'login_form':LoginForm()})
 
 
 
