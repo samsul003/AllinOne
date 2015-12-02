@@ -89,7 +89,10 @@ body .nav{
     font-size: 15px;
 }
 body{
-        font-family: Fontin-Bold;
+        font-family: Aller_Bd;
         font-size: 15px;
 
+}
+.error{
+    background-color: #F2DEDE;
 }
