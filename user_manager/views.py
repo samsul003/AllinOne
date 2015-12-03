@@ -12,6 +12,10 @@ from main_app.custom_context_processor import next_param
 from user_manager.forms import LoginForm, UserRegistrationFrom
 from user_manager.models import AllUser
 from django.contrib.auth import login, authenticate, logout
+from main_app.models import Item, Category
+from user_manager.models import AllUser
+from django.utils import timezone
+from datetime import date, timedelta, datetime
 
 
 class UserRegistrationView(CreateView):
@@ -99,3 +103,18 @@ def logout_view(request):
 #@login_required(login_url=reverse_lazy('login'))
 class DashBoardView(TemplateView):
     template_name = 'dash_board.html'
+
+    def get_context_data(self, **kwargs):
+        result = super(DashBoardView, self).get_context_data(**kwargs)
+        today = timezone.now()
+        data = {}
+        last_week = today - timedelta(days=7)
+        items_today = Item.objects.filter(user=self.request.user, purchase_date=timezone.now().date())
+        items_this_week = Item.objects.filter(user=self.request.user, purchase_date__gte=last_week)
+
+        data['items_today'] = items_today
+        data['items_this_week'] = items_this_week
+        result.update({'items_today': items_today, 'items_this_week': items_this_week})
+        return result
+
+
