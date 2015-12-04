@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static "css/main.css" %}">
 </head>
 <body>
+<a  class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
 <h1>{{ time }}</h1>
 <h2>Hi ! {{ user.name }}</h2>
 {#<img src="{% static "main_app/images/img.jpg" %}" />#}
