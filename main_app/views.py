@@ -1,4 +1,6 @@
 import json
+
+from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from braces.views import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
@@ -11,7 +13,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, CreateView, FormView, DeleteView
 from AllInOne.settings import EMAIL_HOST_USER
 from main_app.forms import AddItemForm, AddCategoryForm
-from main_app.models import Category
+from main_app.models import Category, Item
+from datetime import timedelta
 
 
 class IndexView(TemplateView):
@@ -21,8 +24,6 @@ class IndexView(TemplateView):
         result = super(IndexView, self).get_context_data(**kwargs)
         result.update({'time':timezone.now().time()})
         return result
-
-
 
 
 class AddItemView(CreateView):
@@ -115,3 +116,21 @@ class CustomErrorView(TemplateView):
             return {'error': error}
         else:
             return super(CustomErrorView, self).get_context_data(**kwargs)
+
+
+# @login_required(login_url=reverse_lazy('login'))
+class DashBoardView(TemplateView):
+    template_name = 'dash_board.html'
+
+    # def get_context_data(self, **kwargs):
+    #     result = super(DashBoardView, self).get_context_data(**kwargs)
+    #     today = timezone.now()
+    #     data = {}
+    #     last_week = today - timedelta(days=7)
+    #     items_today = Item.objects.filter(user=self.request.user, purchase_date=timezone.now().date())
+    #     items_this_week = Item.objects.filter(user=self.request.user, purchase_date__gte=last_week)
+    #
+    #     data['items_today'] = items_today
+    #     data['items_this_week'] = items_this_week
+    #     result.update({'items_today': items_today, 'items_this_week': items_this_week})
+    #     return result

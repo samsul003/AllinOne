@@ -20,6 +20,7 @@ from main_app import views as main_app_views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls), name='admin'),
     url(r'^$', main_app_views.IndexView.as_view(), name='home'),
+    url(r'^dashboard/', main_app_views.DashBoardView.as_view(), name='dash_board'),
     url(r'^add/item/', main_app_views.AddItemView.as_view(), name='add_item'),
     url(r'^add/category/', main_app_views.AddCategoryView.as_view(), name='add_category'),
     url(r'^delete/category/$', main_app_views.delete_category, name='cat_delete'),
