@@ -20,6 +20,7 @@ class Category(models.Model):
 class CategoryByUser(models.Model):
     user = models.ForeignKey(AllUser, related_name="category_user")
     category_name = models.CharField(max_length=50, null=False, blank=False)
+    description = models.TextField(blank=True, default='No desc')
 
     class CategoryType(DjangoChoices):
         BuitIn = ChoiceItem(1, "built_in")

@@ -6,9 +6,10 @@ from main_app.models import CategoryByUser, Item
 
 register = template.Library()
 
-@register.simple_tag
+
+@register.assignment_tag
 def user_categories(user):
-    usr_categories = CategoryByUser.objects.filte(user=user)
+    usr_categories = CategoryByUser.objects.filter(user=user)
     return usr_categories
 
 

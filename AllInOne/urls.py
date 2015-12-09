@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^dashboard/', main_app_views.DashBoardView.as_view(), name='dash_board'),
     url(r'^add/item/', main_app_views.AddItemView.as_view(), name='add_item'),
     url(r'^add/category/', main_app_views.AddCategoryView.as_view(), name='add_category'),
+    url(r'^admin/add/category/', main_app_views.AddCategoryViewAdmin.as_view(), name='add_category_admin'),
     url(r'^delete/category/$', main_app_views.delete_category, name='cat_delete'),
 
     # url(r'add/category/', main_app_views.AddCategoryView.as_view(), name='add_category'),
