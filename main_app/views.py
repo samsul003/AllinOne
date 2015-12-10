@@ -79,8 +79,7 @@ class AddCategoryViewAdmin(CreateView):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_staff:
             return render(request, 'error.html', {
-                "error": " You are not authorized to perform this"
-                         " action. Please contact admin for further information."})
+                "error": " You are not authorized to perform this action. Please contact admin for further information."})
         else:
             return super(AddCategoryViewAdmin, self).dispatch(request, *args, **kwargs)
 
@@ -150,9 +149,15 @@ class CustomErrorView(TemplateView):
             return super(CustomErrorView, self).get_context_data(**kwargs)
 
 
-# @login_required(login_url=reverse_lazy('login'))
+#@login_required(login_url=reverse_lazy('login'))
 class DashBoardView(TemplateView):
     template_name = 'dash_board.html'
+
+    def get(self, request, *args, **kwargs):
+        item_form = AddItemForm()
+        result = super(DashBoardView, self).get_context_data(**kwargs)
+        result.update()
+
 
     # def get_context_data(self, **kwargs):
     #     result = super(DashBoardView, self).get_context_data(**kwargs)
